@@ -15,7 +15,7 @@
 // * Notes
 // * Include outputs for exceptions e.g. price: €4, paid amount: €3. 
 
-cashObject = {
+const cashObject = {
 	'€500': 50000,
 	'€100': 10000,
 	'€50': 5000,
@@ -57,8 +57,20 @@ class Cashier {
 				}
 			}
 			// if not — go to the next iteration / next note
-        }
-		console.log(changeGiven);
+		}
+
+		// calculate the change in one amount
+		let totalChangeSum = 0;
+		for (let note in changeGiven) {
+			let noteValue = this.cash[note];
+			let numOfNotes = changeGiven[note];
+			let currentNoteSum = noteValue * numOfNotes;
+			totalChangeSum += currentNoteSum;
+		}
+		totalChangeSum = Number((totalChangeSum/100).toFixed(2));
+
+		console.log(totalChangeSum);
+		return `Total change: ${totalChangeSum}`;
 	}
 }
 
