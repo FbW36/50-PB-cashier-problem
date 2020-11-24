@@ -16,6 +16,8 @@
 // * Include outputs for exceptions e.g. price: €4, paid amount: €3. 
 
 cashObject = {
+	'€500': 50000,
+	'€100': 10000,
 	'€50': 5000,
     '€20': 2000,
     '€10': 1000,
@@ -41,25 +43,24 @@ class Cashier {
 			return `Customer has not enough money!`
 		}
 		// an object that will store the number of notes given
-		let numOfNotes = {};
-        for (let key in this.cash) {
+		let changeGiven = {};
+        for (let note in this.cash) {
 			
-			if (change >= this.cash[key]) {
-				numOfNotes[key] = 0;
+			if (change >= this.cash[note]) {
+				changeGiven[note] = 0;
                 
-                while (change >= this.cash[key] && change !== 0) {
-					change -= this.cash[key];
+                while (change >= this.cash[note] && change !== 0) {
+					change -= this.cash[note];
 					// adding to the notes counter:
-					++numOfNotes[key];
+					++changeGiven[note];
 					console.log(change);
 				}
 			}
 			// if not — go to the next iteration / next note
         }
-		console.log(numOfNotes);
+		console.log(changeGiven);
 	}
 }
 
 let cashier = new Cashier(cashObject);
-cashier.giveChange(30, 99)
-//console.log(cashier.giveChange(30, 67.4));
+cashier.giveChange(30, 150);
