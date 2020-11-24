@@ -16,7 +16,7 @@ const cashObject = {
 }
 const cashOnHand = {
 	'€500': 1,
-	'€50': 1,
+	'€50': 2,
 	'€10': 3,
     '€2': 3,
 	'€1': 1,
@@ -24,6 +24,7 @@ const cashOnHand = {
 	'€0.02': 5,
     '€0.01': 20
 }
+
 
 class Cashier {
 	constructor(cash, desk) {
@@ -67,9 +68,11 @@ class Cashier {
 				// change is not 0
 				// num of notes we give as change is smaller(!) than what we have in our desk
                 while (change >= this.cash[note] && change !== 0 && changeGiven[note] < this.desk[note]) {
-					change -= this.cash[note];
-					// adding to the notes counter:
-					++changeGiven[note];
+                    change -= this.cash[note];
+                    
+                    // adding to the notes counter:
+                    ++changeGiven[note];
+                    
 				}
 			}
 			// if not — go to the next iteration / next note
@@ -90,11 +93,21 @@ class Cashier {
 			return message;
 		}
 
-		console.log("change given:", totalChangeSum, changeGiven, "change due:", originalChange); //? let's keep the original change in a separate variable?
-	}
+		console.log("change given:", totalChangeSum, changeGiven, "change due:", originalChange);
+
+		// change the amount of 'cash on hand' after the change has been issued
+        for (let key in changeGiven) {
+        	let numOfCurrentNotesGiven = changeGiven[key];
+			let numOfCurrentNotesInDesk = this.desk[key];
+			this.desk[key] = numOfCurrentNotesInDesk - numOfCurrentNotesGiven;
+        }
+
+    }
 }
 
 let cashier = new Cashier(cashObject, cashOnHand); // now 2 arguments!
 cashier.giveChange(30, 130);
 cashier.giveChange(80, 150);
+console.log(cashier.desk);
+
 
