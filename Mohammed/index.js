@@ -1,4 +1,6 @@
 
+// 1. The Cashier Problem
+
 const moneyChunks = [100, 50, 20, 10, 5, 1, 0.50, 0.20, 0.10, 0.05 ];
 
 let result =[];
@@ -38,14 +40,12 @@ function calculate(moneyRate, rest)
 
 function calculateFraction(moneyRate, rest)
 {
-    
-    //console.log(moneyRate, rest)
     let counter = Math.floor(fraction/moneyRate);
-    //console.log(`${counter} x ${moneyRate}`);
     fraction = fraction - (counter * moneyRate);
-    result.push({count: counter, note:moneyRate});
-}
 
+    if (counter !== 0)
+        result.push({count: counter, note:moneyRate/100});
+}
 
 // #############################################################################
 
