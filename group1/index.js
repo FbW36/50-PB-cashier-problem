@@ -16,6 +16,8 @@ function giveChange(price, amountGiven) {
         output.push(`${remainder} - €${item}`);
       }
     });
+  } else if (amountGiven === price) {
+    console.log("No Change");
   } else {
     console.log("Not enough money for price");
   }
