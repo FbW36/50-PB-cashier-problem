@@ -21,21 +21,19 @@ for (let i=0; i<=moneyChunks.length; i++)
             calculateFraction(moneyChunks[i]*100);
     }
 }
-    
-console.log(result);
 
 //console.log('the rest is', 22.25 % 1);
 
 function calculate(moneyRate, rest)
 {
-    
-        //console.log(moneyRate, rest)
-        let counter = Math.floor(rest_amount/moneyRate);
-        //console.log(`${counter} x ${moneyRate}`);
-        rest_amount = rest_amount - (counter * moneyRate);
+    let counter = Math.floor(rest_amount/moneyRate);
+    rest_amount = rest_amount - (counter * moneyRate);
+
+    if (counter !== 0)
+    {
         result.push({count: counter, note:moneyRate});
-        
-        //console.log('the rest', rest_amount);
+        console.log(`${counter} X €${moneyRate}`)
+    }
 }
 
 function calculateFraction(moneyRate, rest)
@@ -44,7 +42,10 @@ function calculateFraction(moneyRate, rest)
     fraction = fraction - (counter * moneyRate);
 
     if (counter !== 0)
+    {
         result.push({count: counter, note:moneyRate/100});
+        console.log(`${counter} X €${moneyRate/100}`)
+    }
 }
 
 // #############################################################################
@@ -56,4 +57,4 @@ const inputArray = [5,3,22,4,5,3,3,3,7];
 noDuplicateArray = inputArray.filter((item, pos) => 
     inputArray.indexOf(item) == pos);
 
-console.log(noDuplicateArray)
+console.log('\n\n', noDuplicateArray)
