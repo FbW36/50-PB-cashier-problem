@@ -1,4 +1,4 @@
-giveChange({ price: 4.5, paidAmount: 20 });
+giveChange({ price: 3.75, paidAmount: 50 });
 
 function giveChange({ price, paidAmount }) {
   let change = paidAmount - price;
@@ -33,9 +33,10 @@ function giveChange({ price, paidAmount }) {
         changeInCents -= dicCashier[key];
         result[key]++;
       }
+      console.log(`${result[key]} x ${key}`);
     }
   }
-  for (const key in result) {
+  /*   for (const key in result) {
     console.log(`${result[key]} x ${key}`);
-  }
+  } */
 }
