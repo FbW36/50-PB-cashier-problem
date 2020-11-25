@@ -34,7 +34,8 @@ class Cashier {
 
 	giveChange(price, amount) {
 		// calculate change
-		let originalChange = amount - price;
+		let originalChange = Number((amount - price).toFixed(2)); // because floats and 150 - 149.1 returns 0.9000000000000057 ¯\_(ツ)_/¯
+
 		let change = originalChange;
 		change *= 100; // change in cents
 		if (price > amount) {
@@ -88,12 +89,13 @@ class Cashier {
 		totalChangeSum = Number((totalChangeSum/100).toFixed(2));
 
 		if (totalChangeSum < originalChange) {
+			console.log("totalChangeSum", totalChangeSum, "originalChange", originalChange);
 			let message = 'Not enough notes to give change...:(';
 			console.log(message);
 			return message;
 		}
 
-		console.log("change given:", totalChangeSum, changeGiven, "change due:", originalChange);
+		console.log("change given:", totalChangeSum, changeGiven, "change due:", originalChange); // add a log to see the difference between the change due and change given
 
 		// change the amount of 'cash on hand' after the change has been issued
         for (let key in changeGiven) {
@@ -106,8 +108,9 @@ class Cashier {
 }
 
 let cashier = new Cashier(cashObject, cashOnHand); // now 2 arguments!
-cashier.giveChange(30, 130);
-cashier.giveChange(80, 150);
-console.log(cashier.desk);
+
+// cashier.giveChange(30, 130);
+console.log(cashier.desk); // to check what's in the cash desk
+cashier.giveChange(149.1, 150);
 
 

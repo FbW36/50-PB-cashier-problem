@@ -53,7 +53,7 @@ class Cashier {
 					change -= this.cash[note];
 					// adding to the notes counter:
 					++changeGiven[note];
-					console.log(change);
+					// console.log(change);
 				}
 			}
 			// if not — go to the next iteration / next note
@@ -69,10 +69,10 @@ class Cashier {
 		}
 		totalChangeSum = Number((totalChangeSum/100).toFixed(2));
 
-		console.log(totalChangeSum);
+		console.log("total change given:", totalChangeSum);
 		return `Total change: ${totalChangeSum}`;
 	}
 }
 
 let cashier = new Cashier(cashObject);
-cashier.giveChange(30, 150);
+cashier.giveChange(149.1, 150);
