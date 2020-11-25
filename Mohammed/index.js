@@ -1,5 +1,5 @@
 
-// 1. The Cashier Problem
+// The Cashier Problem
 
 const moneyChunks = [100, 50, 20, 10, 5, 1, 0.50, 0.20, 0.10, 0.05 ];
 
@@ -49,12 +49,3 @@ function calculateFraction(moneyRate, rest)
 }
 
 // #############################################################################
-
-// 2. Validate Arrays
-
-const inputArray = [5,3,22,4,5,3,3,3,7];
-
-noDuplicateArray = inputArray.filter((item, pos) => 
-    inputArray.indexOf(item) == pos);
-
-console.log('\n\n', noDuplicateArray)
